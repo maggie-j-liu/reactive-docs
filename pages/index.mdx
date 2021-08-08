@@ -1,0 +1,122 @@
+import Heading from "../components/Heading.jsx";
+import Reactive from "../components/Reactive";
+
+<main className="my-24">
+<Heading />
+
+<div className="prose mx-auto text-lg prose-sky mt-8">
+
+## Setup
+
+### Firebase
+
+First, set up [Firebase](https://firebase.google.com/). Navigate to the [Firebase console](https://console.firebase.google.com/) and create a new project.
+
+![Create a project in the firebase console](/1-create-project.png)
+
+Go to the Authentication section, click "Get Started", and enable the Google sign in provider.
+
+![Enable Google sign in provider](/2-auth.png)
+
+Then, scroll down and add your website's domain to the section of authorized domains.
+
+![](/3-domain.png)
+
+Next, click "Realtime Database" on the sidebar and click "Create Database". Choose "start in locked mode" and enable the database. Navigate to the rules tab, and add in [these rules](https://reactive-comments.vercel.app/firebaserules.json).
+
+![](/4-rules.png)
+
+Then, go to the project settings,
+
+![](/5-settings.png)
+
+and create a new web application.
+
+![](/6-webapp.png)
+
+After you register the app, copy the `firebaseConfig`. You'll need this for the next step!
+
+![](/7-config.png)
+
+### Reactive
+
+#### Using npm
+
+If you have a bundler for your website like webpack, you can directly import the npm module.
+
+Use
+
+```
+# for npm
+npm install @maggieliu/reactive
+
+# for yarn
+yarn add @maggieliu/reactive
+```
+
+to add reactive to your website.
+
+#### Loading from a `script` tag
+
+If you want to load Reactive from a script tag, add this script tag to your website.
+
+```
+<script src="https://reactive-comments.vercel.app/dist/bundle.js"></script>
+```
+
+Reactive will render into a `div` with id `reactive_widget`. Place this where you want the comments and reactions to appear on your website. **If you're loading Reactive via a script tag, make sure the `div` appears before the script tag.**
+
+```
+<div id="reactive_widget"></div>
+```
+
+Then, you need to install Reactive. Use the code below either in a script tag after the script that loads Reactive, or somewhere with your javascript code.
+
+```
+reactive.install({
+    /* configuration options go here */
+    firebaseConfig: /* your firebaseConfig */
+    page: /* an identifier for the current page, to be used in the database */
+    reactions: /* a string array containing the reactions you want to be shown */
+    reactionText: /* the text you want to appear above the reactions */
+});
+```
+
+The `firebaseConfig` option is required, you should paste the `firebaseConfig` from the previous step here.
+
+All the other options are optional.
+
+The `page` option is an identifier for the current page, to be used to store reactions and comments in the database. The default is `window.location.pathname`, with a trailing slash appended if one does not exist.
+
+The `reactions` option is a string array containing the emojis you would like to appear in the reaction widget. The default is `["😭", "😕", "😀", "🤩"]`.
+
+![](/8-reactions.png)
+
+The `reactionText` option determines the text that appears above the reactions. The default is `"Did you enjoy this post? Leave your reactions below!"`.
+
+An example is shown below:
+
+```
+reactive.install({
+    firebaseConfig: {
+        apiKey: "apikeyfromfirebase",
+        authDomain: "yourappname.firebaseapp.com",
+        databaseURL: "https://yourappname-default-rtdb.firebaseio.com",
+        projectId: "yourappname",
+        storageBucket: "yourappname.appspot.com",
+        messagingSenderId: "123456",
+        appId: "1:12345:web:fd239v10fg2",
+    },
+    page: "homepage",
+    reactionText:
+        "Leave your thoughts and reactions about this post in the comments below!",
+    reactions: ["🦄", "😎", "😶‍🌫️", "😼"],
+});
+```
+
+Then, you should see Reactive rendered on your page! Now you have an easy to set up, easy to configure comments and reactions system.
+
+<Reactive />
+</div>
+
+</main>
