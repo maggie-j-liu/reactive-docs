@@ -79,6 +79,7 @@ reactive.install({
     page: /* an identifier for the current page, to be used in the database */
     reactions: /* a string array containing the reactions you want to be shown */
     reactionText: /* the text you want to appear above the reactions */
+    paymentPointer: /* for webmonetization */
 });
 ```
 
@@ -93,6 +94,8 @@ The `reactions` option is a string array containing the emojis you would like to
 ![](/8-reactions.png)
 
 The `reactionText` option determines the text that appears above the reactions. The default is `"Did you enjoy this post? Leave your reactions below!"`.
+
+Reactive supports webmonetization through [Coil](https://coil.com/). You can add your own [payment pointer](https://help.coil.com/docs/monetize/paymentpointer/pp-overview/index.html) from Gatehub or Uphold through the `paymentPointer` option. The default is `"$ilp.uphold.com/LJmbPn7WD4JB"`.
 
 An example is shown below:
 
@@ -111,6 +114,7 @@ reactive.install({
     reactionText:
         "Leave your thoughts and reactions about this post in the comments below!",
     reactions: ["🦄", "😎", "😶‍🌫️", "😼"],
+    paymentPointer: "$ilp.uphold.com/LJmbPn7WD4JB"
 });
 ```
 
