@@ -17,6 +17,7 @@ export default function Reactive() {
       reactionText:
         "Hope you enjoyed this project and that Reactive is useful for you!",
       reactions: ["🦄", "😎", "😇", "😼", "😍", "🤩"],
+      paymentPointer: "$ilp.uphold.com/D7BwPKMQzBiD",
     });
   }, []);
   return <div id="reactive_widget"></div>;
