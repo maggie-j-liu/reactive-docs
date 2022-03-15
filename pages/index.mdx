@@ -97,6 +97,8 @@ The `reactionText` option determines the text that appears above the reactions. 
 
 Reactive supports webmonetization through [Coil](https://coil.com/). You can add your own [payment pointer](https://help.coil.com/docs/monetize/paymentpointer/pp-overview/index.html) from Gatehub or Uphold through the `paymentPointer` option. The default is `"$ilp.uphold.com/LJmbPn7WD4JB"`.
 
+Custom theming is available through the `primaryColors` and `secondaryColors` options. Each of these options accepts an array of 10 CSS colors, which are interpreted as the lightest shade to the darkest shade.
+
 An example is shown below:
 
 ```
@@ -115,6 +117,12 @@ reactive.install({
         "Leave your thoughts and reactions about this post in the comments below!",
     reactions: ["🦄", "😎", "😶‍🌫️", "😼"],
     paymentPointer: "$ilp.uphold.com/D7BwPKMQzBiD"
+    primaryColors: [
+        // array of 10 valid CSS colors
+    ],
+    secondaryColors: [
+        // array of 10 valid CSS colors
+    ]
 });
 ```
 
